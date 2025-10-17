@@ -4,7 +4,7 @@
 A modern, fully responsive blogging platform built with React.js, Express.js, MongoDB, and Firebase Authentication. Smooth animations are powered by Framer Motion, delivering a beautiful and interactive user experience across mobile, tablet, and desktop devices.
 
 🌐 Live URL
-👉 Sunset Diary Live:
+👉 Sunset Diary Live: https://sunset-diary-f8a65.web.app/
 
 🎯 Project Purpose
 Sunset Diary is designed for bloggers to share their stories, experiences, and ideas through an interactive and aesthetic web platform. It includes features for publishing blogs, commenting, managing personal wishlists, and showcasing recent and featured posts — all with a dynamic, animated user experience.
