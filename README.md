@@ -1,6 +1,6 @@
 # React + Vite: Sunset Diary(Blogging web app)
 
-📖 Sunset Diary 🌅
+📖**Sunset Diary** 🌅
 A modern, fully responsive blogging platform built with React.js, Express.js, MongoDB, and Firebase Authentication. Smooth animations are powered by Framer Motion, delivering a beautiful and interactive user experience across mobile, tablet, and desktop devices.
 
 🌐 Live URL
