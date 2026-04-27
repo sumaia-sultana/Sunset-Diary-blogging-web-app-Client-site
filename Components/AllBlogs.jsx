@@ -1,5 +1,4 @@
- 
-import { use, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FaHeart, FaInfoCircle } from 'react-icons/fa';
 import { Link, useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from '../Context/AuthContext';
@@ -7,23 +6,28 @@ import Swal from 'sweetalert2';
 import useAxiosSecure from '../Hook/useAxiosSecure';
 
 const AllBlogs = () => {
-
-  const {user} = use(AuthContext);
+  const { user } = useContext(AuthContext);
   const blogs = useLoaderData();
-  // console.log(blogs);
   const navigate = useNavigate();
-  const [category, setCategory] = useState(blogs)
-  const [search, setSearch] = useState("")
+  const apiBaseUrl = import.meta.env.VITE_API_URL?.trim().replace(/\/$/, '');
+  const [category, setCategory] = useState(Array.isArray(blogs) ? blogs : []);
+  const [search, setSearch] = useState("");
   const [wish, setWish] = useState([]);
-   const axiosSecure =  useAxiosSecure();
-  
+  const axiosSecure = useAxiosSecure();
+
+  useEffect(() => {
+    setCategory(Array.isArray(blogs) ? blogs : []);
+  }, [blogs]);
 
   // searching by category
-   useEffect(() => {
-      fetch(` ${import.meta.env.VITE_API_URL}/blogs?search=${search}`)
+  useEffect(() => {
+    const query = search.trim();
+
+    fetch(`${apiBaseUrl}/blogs${query ? `?search=${encodeURIComponent(query)}` : ""}`)
       .then((res) => res.json())
-      .then((data) => setCategory(data));
-  }, [search])
+      .then((data) => setCategory(Array.isArray(data) ? data : []))
+      .catch(() => setCategory([]));
+  }, [apiBaseUrl, search]);
 
   useEffect(() => {
     if(user?.email) {
@@ -32,10 +36,15 @@ const AllBlogs = () => {
       .then(res => setWish(res.data))
       .catch(err => console.error(err));
     }
-  }, [user, axiosSecure])
+  }, [user, axiosSecure]);
 
  
   const handleWishBlog = (blog) => {
+    if (!user?.email) {
+      Swal.fire("Login required", "Please log in to add blogs to your wishlist.", "info");
+      navigate('/login');
+      return;
+    }
 
     const exists = wish.find(item => item.blogId === blog._id);
     if (exists) {
@@ -43,7 +52,6 @@ const AllBlogs = () => {
       return;
     }
 
-    console.log(blog);     
     const wishData = {
     blogId: blog._id,
     title: blog.title,
@@ -73,9 +81,9 @@ const AllBlogs = () => {
     <div className='flex justify-between'>
        <div className='w-1/5'>
         <h1 className="text-2xl top-10 relative text-left font-bold text-[#FF5F7E] "> All blogs</h1>
-   </div>
+    </div>
        <div className='w-4/5 text-right right-0 relative'>
-     {/* Search Bar accord to level */}
+     {/* Search Bar according to category */}
 <fieldset className="space-y-2 m-5 lg:px-10">
   <label className="label text-white font-bold text-shadow-md">
    
@@ -85,9 +93,10 @@ const AllBlogs = () => {
       name="category" 
       className="select w-full flex-1"  
       placeholder="search"
+      value={search}
       onChange={(e) => setSearch(e.target.value)}>
         
-       <option disabled hidden selected>Select Category</option>
+       <option value="">All Categories</option>
           <option>Personal</option>
           <option>Travelling & Photography</option>
           <option>Fashion & Beauty</option>
@@ -96,17 +105,21 @@ const AllBlogs = () => {
           <option>Education</option>
           <option>DIY & Craft Blogs</option>
     </select>
-    <button onChange={(e) => setSearch(e.target.value)}
+    <button
+      type="button"
       className="bg-gradient-to-r from-[#FF5F7E] via-[#FF9E80] to-[#FF9E80] hover:from-[#FF9E80] hover:via-[#FF9E80]
        hover:to-[#FFC75F] text-white font-bold px-4 py-2 rounded ">
       Search
     </button>
   </div>
-  </fieldset>
+      </fieldset>
     </div>
     </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {category.length === 0 && (
+          <p className="col-span-full text-center text-gray-500">No blogs found for this category.</p>
+        )}
         {category.map((blog) => (
           <div
             key={blog._id}

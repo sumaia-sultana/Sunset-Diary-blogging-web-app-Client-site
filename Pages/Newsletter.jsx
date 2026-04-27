@@ -1,80 +1,92 @@
-import React, { use, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../Context/AuthContext';
-import { CiCircleCheck } from 'react-icons/ci';
+import { CheckCircle2 } from 'lucide-react';
 
 const Newsletter = () => {
-     const [email, setEmail] = useState("");
-     const {user} = use(AuthContext)
+  const [email, setEmail] = useState('');
+  const { user } = useContext(AuthContext);
 
-     const handleSubscribe = (e) => {
+  const handleSubscribe = (e) => {
     e.preventDefault();
 
     if (!email) {
-      toast.error("Please enter a valid email address.", {
-        position: "top-right",
-      });
-       return;
+      toast.error('Please enter a valid email address.');
+      return;
     }
-     toast.success("Thank you for subscribing to our newsletter!", {
-      position: "top-right",
-    });
 
-    setEmail(user.email);
+    toast.success('Subscribed successfully 🚀');
+    setEmail(user?.email || '');
   };
 
- return (
-    // my doing part
-        <div className='mx-auto p-6'>
-            <h1 className='text-center text-[#2596be] text-2xl font-semibold mb-5 '>Never Miss a New Story!</h1>
-        <div className='flex   justify-center h-[460px] '>
-            <div className='relative w-full md:w-1/2 h-[460px]'>
-                <img src="https://i.ibb.co/jZMjxs1k/nadir-on-go.png" 
-                  className='object-cover w-full h-full transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1'
-                />
-        <div className=" relative -top-84 max-w-md mx-auto text-center my-12 px-4 ">
-      <h2 className="text-2xl text-white font-bold mb-4">Subscribe Newsletter to get fresh blogs and stories!</h2>
-      <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email..."
-          className="border border-gray-300 text-gray-50 rounded-lg p-3 flex-1 focus:outline-none focus:ring-2 "
-        />
-        <button   className="relative inline-block text-lg group">
-      <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
-        <span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
-        <span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
-        <span className="relative">Subscribe</span>
-      </span>
-      <span className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
-     </button>
-      </form>
+  return (
+      <section className="py-24 bg-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-5 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-      {/* Toast container */}
-      <ToastContainer/>
-    </div>
-     </div>
-         <div className='bg-[#2596be] py-2 lg:w-1/3 lg:px-20'>
-             <div className='text-white md:my-5  md:mt-14 lg:my-5 mx-2 md:px-10 lg:py-10 '>
-                <h3 className=''>Why You'll Subscribe?</h3>   
-            <p className='my-2'>To Get - </p>
-            <ul className='space-y-2  '>
-            <li className='flex '><CiCircleCheck className='top-1 relative' />latest posts</li>
-            <li className='flex '><CiCircleCheck className='top-1 relative'/>personal notes</li>
-            <li className='flex '><CiCircleCheck className='top-1 relative'/>exclusive content</li>
-            <li className='flex '><CiCircleCheck className='top-1 relative'/>fresh ideas</li>
-            <li className='flex '><CiCircleCheck className='top-1 relative'/>lifestyle tips</li>
-            <li className='flex '><CiCircleCheck className='top-1 relative'/>amazing stories</li>
-            <li className='flex '><CiCircleCheck className='top-1 relative'/>inspiration</li>
-            <li className='flex '><CiCircleCheck className='top-1 relative'/>entertainment</li>
+          {/* Left Content */}
+          <div>
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-gray-900 drop-shadow-sm">
+              Get product updates <br className="hidden md:block" /> straight to your inbox
+            </h2>
+            <p className="text-gray-600 text-lg md:text-xl mb-8 max-w-lg leading-relaxed">
+              Join thousands of readers who get high-quality blogs, product insights, and updates every week.
+            </p>
+
+            <ul className="space-y-4 text-gray-700 text-lg font-medium">
+              <li className="flex items-center gap-3">
+                <CheckCircle2 className="w-6 h-6 text-[#FF5F7E] flex-shrink-0" />
+                <span>Weekly curated content</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <CheckCircle2 className="w-6 h-6 text-[#FF5F7E] flex-shrink-0" />
+                <span>No spam, unsubscribe anytime</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <CheckCircle2 className="w-6 h-6 text-[#FF5F7E] flex-shrink-0" />
+                <span>Early access to new features</span>
+              </li>
             </ul>
-             </div>
+          </div>
+
+          {/* Right Form Card */}
+          <div className="bg-gradient-to-br from-[#FF5F7E] via-[#ff7669] to-[#FF9E80] text-white p-8 md:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
+            {/* Decorative background elements inside the card */}
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white/20 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold mb-6">Subscribe Now</h3>
+
+              <form onSubmit={handleSubscribe} className="space-y-5">
+                <div>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    className="w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition-all text-lg"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-white text-[#FF5F7E] hover:bg-gray-50 transition-all duration-300 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                >
+                  Subscribe
+                </button>
+              </form>
+              <p className="text-white/80 text-sm mt-5 text-center">
+                We care about your data in our <a href="#" className="underline hover:text-white transition-colors">privacy policy</a>.
+              </p>
             </div>
+          </div>
         </div>
-        
-        </div>
+      </div>
+
+      <ToastContainer position="top-right" aria-label="Toast notifications" />
+    </section>
   );
 };
 

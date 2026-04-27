@@ -21,9 +21,14 @@ const Recent = () => {
            .then(res => setWish(res.data))
            .catch(err => console.error(err));
          }
+         
        }, [user,axiosSecure])
 
      const handleWishlist = (blog) => {
+        if (!user) {
+    navigate('/login'); 
+    return;
+  }
      console.log(blog);     
         const wishData = {
         blogId: blog._id,
@@ -66,60 +71,75 @@ const Recent = () => {
     }, []);
 
  return (
-     <div>
-  <div className="px-5 mx-auto">
-  <h2 className="text-2xl font-bold 
-  text-[#ff5771] text-center mb-6">Recent Blogs</h2>
+ 
+   <div className="py-16 bg-white">
+            <div className="max-w-7xl mx-auto px-5">
+                <h2 className="text-4xl font-bold text-[#ff5771] text-center mb-12">Recent Blogs</h2>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-3 gap-6">
-    {recentBlog.map(blog => (
-      <div
-        key={blog._id}
-        className="relative rounded-xl overflow-hidden shadow-lg group"
-      >
-        {/* Background Image */}
-        {blog.photo && (
-          <img
-            src={blog.photo}
-            alt={blog.title}
-            className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        )}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {recentBlog.map(blog => (
+<div
+  key={blog._id}
+  className="group bg-white rounded-2xl border border-gray-100 hover:border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col"
+>
+  {/* Image */}
+  <img
+    src={blog.photo}
+    alt={blog.title}
+    className="w-full h-44 object-cover"
+  />
 
-        {/* Overlay content */}
-        <div className="absolute inset-0 bg-opacity-40 flex flex-col justify-between p-4 text-white">
-          <div>
-            <h3 className="text-xl text-[#f7f6f6] font-bold underline">{blog.title}</h3>
-            <p className="text-sm text-[#f3efef] mr-1.5">Posted on 
-              <span> {new Date(blog.createdAt).toLocaleDateString()}</span>
-            </p>
-          </div>
+  <div className="p-5 flex flex-col justify-between flex-1">
+    {/* Category */}
+    <span className="text-xs font-medium text-[#ff5771] bg-[#ff5771]/10 px-2.5 py-1 rounded-full w-fit">
+      {blog.category}
+    </span>
 
-          {/* Buttons */}
-          <div className="flex items-center justify-between mt-4">
-            <Link
-              to={`/blogs/${blog._id}`}
-              className="bg-gradient-to-r from-[#FF5F7E] via-[#FF9E80] to-[#FF9E80] 
-              hover:from-[#FF9E80] hover:via-[#FF9E80] hover:to-[#FFC75F] 
-              text-white font-semibold px-1.5 py-1.5 rounded-full flex items-center space-x-2 transition" >
-              <FaInfoCircle className="h-5 w-5" />
-               
-            </Link>
+    {/* Title */}
+    <h3 className="mt-3 text-lg font-semibold text-gray-900 leading-snug group-hover:text-[#ff5771] transition">
+      {blog.title}
+    </h3>
 
-            <button
-              onClick={() => handleWishlist(blog)}
-              className="p-1.5 rounded-full bg-white bg-opacity-20 hover:bg-opacity-40 transition"
-              title="Add to Wishlist">
-              <FaHeart className="w-5 h-5 text-[#ff5771]" />
-            </button>
-          </div>
-        </div>
+    {/* Description */}
+    <p className="mt-2 text-sm text-gray-600 leading-relaxed line-clamp-2">
+      {blog.short_description}
+    </p>
+
+    {/* Bottom Section */}
+    <div className="mt-5 flex items-center justify-between">
+      {/* Date */}
+      <p className="text-xs text-gray-400">
+        {new Date(blog.createdAt).toLocaleDateString("en-GB", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        })}
+      </p>
+
+      {/* Actions */}
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => handleWishlist(blog)}
+          className="p-2 rounded-full hover:bg-gray-100 transition"
+        >
+          <FaHeart className="  text-[#ff5771] transition" />
+        </button>
+
+        <Link
+          to={`/blogs/${blog._id}`}
+          className="text-sm font-medium text-gray-700 hover:text-black transition flex items-center gap-1"
+        >
+           
+          <FaInfoCircle className="text-lg" />
+        </Link>
       </div>
-    ))}
+    </div>
   </div>
-</div>
-
-</div>
+  </div>
+    ))}
+     </div>
+    </div>
+  </div>   
 
     );
 };

@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.vercel
+.env*.local
+.env
+
+  # //# http://localhost:5000 #//
+  // firebase deploy: npm run build
+firebase deploy --only hosting --project sunset-diary-f8a65
+//

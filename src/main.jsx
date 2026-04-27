@@ -28,6 +28,7 @@ import PrivateRoute from '../Routes/PrivateRoute.jsx';
 import MemoryFrame from '../Components/MemoryFrame.jsx';
 import Counter from '../Components/Counter.jsx';
  
+const apiBaseUrl = import.meta.env.VITE_API_URL?.trim().replace(/\/$/, "");
 
 const router = createBrowserRouter([
   {
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
     },
     {
       path: 'allblogs',
-      loader: () => fetch('http://localhost:5000/blogs') , 
+      loader: () => fetch(`${apiBaseUrl}/blogs`), 
       Component: AllBlogs,
       hydrateFallbackElement: <Loading/>
     },
@@ -62,13 +63,13 @@ const router = createBrowserRouter([
     },
     {
      path: '/blogs/:id',
-     loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/blogs/${params.id}`),
+     loader: ({params}) => fetch(`${apiBaseUrl}/blogs/${params.id}`),
      element: <BlogDetails/>,
      hydrateFallbackElement: <Loading/>
     },
     {
      path: '/updateBlog/:id',
-     loader: ({params}) => fetch(`http://localhost:5000/blogs/${params.id}`),
+     loader: ({params}) => fetch(`${apiBaseUrl}/blogs/${params.id}`),
      element: <PrivateRoute><UpdateBlog/></PrivateRoute>
     },
     {
