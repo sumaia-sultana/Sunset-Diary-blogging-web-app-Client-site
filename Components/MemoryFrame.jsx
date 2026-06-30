@@ -3,8 +3,8 @@ import Marquee from "react-fast-marquee";
 
 const MemoryFrame = () => {
     return (
-       <div className='py-16'>
-        <div className='max-w-7xl mx-auto px-5'>
+       <div className='py-16 bg-white'>
+        <div className='max-w-7xl mx-auto  px-5'>
              <div className="text-center mb-12">
             <h1 className=' text-4xl text-[#db5d89ef] mb-4 font-bold'>Sunset Dairy Studio Frame </h1>
             <p className='text-gray-500 text-center'>“A glimpse through our window, where every picture tells a story, and every story shapes Sunset Diary”</p>

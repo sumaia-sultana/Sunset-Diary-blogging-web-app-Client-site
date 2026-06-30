@@ -16,7 +16,7 @@ const Newsletter = () => {
       return;
     }
 
-    toast.success('Subscribed successfully 🚀');
+    toast.success('Subscribed successfully ');
     setEmail(user?.email || '');
   };
 
@@ -28,7 +28,7 @@ const Newsletter = () => {
           {/* Left Content */}
           <div>
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-gray-900 drop-shadow-sm">
-              Get product updates <br className="hidden md:block" /> straight to your inbox
+              Get New Blogs updates <br className="hidden md:block"/> straight to your inbox!
             </h2>
             <p className="text-gray-600 text-lg md:text-xl mb-8 max-w-lg leading-relaxed">
               Join thousands of readers who get high-quality blogs, product insights, and updates every week.
@@ -66,8 +66,8 @@ const Newsletter = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email address"
-                    className="w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition-all text-lg"
-                  />
+                    className="w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/70 
+                    focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition-all text-lg"/>
                 </div>
 
                 <button

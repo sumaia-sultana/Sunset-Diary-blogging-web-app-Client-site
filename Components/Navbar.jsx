@@ -43,14 +43,13 @@ export default function Navbar() {
   );
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md   shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
       <div className="max-w-7xl mx-auto px-5">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link
             to="/"
-            className="text-2xl font-extrabold bg-gradient-to-r from-[#FF5F7E] to-[#FF9E80] bg-clip-text text-transparent"
-          >
+            className="text-2xl font-extrabold bg-gradient-to-r from-[#FF5F7E] to-[#FF9E80] bg-clip-text text-transparent">
             SunsetDiary
           </Link>
 
@@ -80,7 +79,8 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Link to="/login">Login</Link>
+                <Link to="/login"
+                className="px-4 py-2 rounded bg-gradient-to-r from-[#FF5F7E] to-[#FF9E80] text-white">Login</Link>
                 <Link
                   to="/register"
                   className="px-4 py-2 rounded bg-gradient-to-r from-[#FF5F7E] to-[#FF9E80] text-white"
@@ -96,18 +96,18 @@ export default function Navbar() {
             className="lg:hidden"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X /> : <Menu />}
+            {isOpen ? <X className="text-[#FF5F7E]"/> : <Menu className="text-[#FF5F7E]"/>}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="lg:hidden fixed top-16 left-0 w-full bg-white shadow-md z-40">
+        <div className="lg:hidden fixed top-16 left-0 w-full bg-white/90  shadow-md z-40">
           <div className="flex flex-col gap-4 p-5">
             <Links />
 
-            <hr />
+            <hr/>
 
             {user ? (
               <>
@@ -124,15 +124,15 @@ export default function Navbar() {
                 </div>
                 <button
                   onClick={handleSignOut}
-                  className="py-2 bg-[#FF5F7E] text-white rounded"
+                  className="py-2 bg-[#FF5F7E] rounded"
                 >
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
+                <Link className="text-[#FF5F7E]" to="/login">Login</Link>
+                <Link className="text-[#FF5F7E]" to="/register">Register</Link>
               </>
             )}
           </div>

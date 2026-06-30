@@ -51,7 +51,7 @@ const  FeaturedBlogs = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl bg-white mx-auto p-6">
       <h1 className="text-2xl font-bold mb-6 text-center
         bg-gradient-to-r from-[#FF3366] via-[#FF9E80] to-[#FF9E80] bg-clip-text text-transparent">
          Our Top 10 Featured Picks for You!

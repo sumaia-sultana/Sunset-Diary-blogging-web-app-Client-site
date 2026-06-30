@@ -74,10 +74,16 @@ const Login = () => {
       }
 
     return (
-    <div className="hero-content flex-col">
-      <div className="card-body justify-center item center card bg-base-100 w-96 my-10 shadow-sm">
-        <form onSubmit={handleLogIn} className="fieldset justify-center item center">
-             <h1 className="text-2xl bg-gradient-to-r from-[#FF5F7E] via-[#FF9E80] to-[#FF9E80] bg-clip-text text-transparent font-bold m-5">Please Login now!</h1> 
+    <div className=" flex justify-center items-center min-h-screen ">
+      <div className="flex flex-col max-w-md p-6 rounded-md  relative justify-center item-center card bg-base-100 w-96 my-10 shadow-sm">
+        <div className='mb-8 text-center'>
+          <h1 className='my-3 text-4xl  bg-gradient-to-r from-[#FF5F7E] via-[#FF9E80] to-[#FF9E80] bg-clip-text text-transparent font-bold m-5 '>Log In</h1>
+          <p className='text-sm text-[#6b7280]'>
+            Sign in to access your account
+          </p>
+        </div>
+        <form onSubmit={handleLogIn} className="fieldset justify-center item-center">
+ 
           <label className="label">Email</label>
           <input type="email" name='email' className="input" placeholder="Email" />
           <label className="label">Password</label>

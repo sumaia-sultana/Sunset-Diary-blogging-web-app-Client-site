@@ -77,7 +77,7 @@ const AllBlogs = () => {
    };
  
   return (
-    <div className="mx-auto max-w-7xl lg:px-5 md:px-5">
+    <div className="mx-auto max-w-7xl bg-white py-5 lg:px-5 md:px-5">
     <div className='flex justify-between'>
        <div className='w-1/5'>
         <h1 className="text-2xl top-10 relative text-left font-bold text-[#FF5F7E] "> All blogs</h1>
@@ -85,13 +85,13 @@ const AllBlogs = () => {
        <div className='w-4/5 text-right right-0 relative'>
      {/* Search Bar according to category */}
 <fieldset className="space-y-2 m-5 lg:px-10">
-  <label className="label text-white font-bold text-shadow-md">
+  <label className="label text-[#FF5F7E] font-bold bg-white text-shadow-md">
    
   </label>
   <div className="flex gap-2">
     <select 
       name="category" 
-      className="select w-full flex-1"  
+      className="select w-full  bg-white border-0 border-[#FF5F7E] flex-1"  
       placeholder="search"
       value={search}
       onChange={(e) => setSearch(e.target.value)}>
