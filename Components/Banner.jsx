@@ -7,17 +7,20 @@ import { Link } from 'react-router';
 const Banner = () => {
   return (
    
-    <section 
-    
-    className=
-    " relative w-full bg-[#B68474]  min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden " >
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#dcb2a0_0%,transparent_55%)]">
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#dcb2a0_0%,transparent_55%)]
-  "/>
-  <div className="absolute -top-52 -left-60 w-[1800px] h-40 rotate-[35deg] bg-black/10 blur-2xl" />
-         <div className="absolute -top-52 -left-60 w-[1800px] h-[2px] rotate-[35deg] bg-white/25 blur-sm" />
-      </div>
+<section
+  className="relative w-full min-h-[700px] bg-cover bg-center bg-no-repeat overflow-hidden"
+  style={{
+    backgroundImage: "url('/hero.png')",
+  }}
+>
+      {/* 2 radial light */}
+      {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#e5cdc7_0%,transparent_70%)]"> */}
+         {/* 3 Diagonal glow */}
+         {/* <div className="absolute -top-40 -left-40 w-[150%] h-60 rotate-[35deg] bg-white/5 blur-[100px] "/> */}
+         {/* 3 Diagonal shadow */}
+     {/* <div className="absolute -top-32 -left-32 w-[150%] h-40 rotate-[35deg] bg-black/10 blur-2xl"/>
+         <div className="absolute -top-52 -left-60 w-[150%] h-[2px] rotate-[35deg] bg-white/20 blur-sm" />
+      </div> */}
 
       <div className="max-w-7xl mx-auto  px-5 w-full relative z-10 py-20">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -123,6 +126,13 @@ const Banner = () => {
 
         </div>
       </div>
+       {/* Circle Image */}
+  <div className="absolute bottom-[-220px] left-1/2 -translate-x-1/2">
+    <div className="absolute inset-[-15px] rounded-full border border-white/40" />
+    <div className="w-[520px] h-[520px] rounded-full overflow-hidden">
+      <img src="/girl.png" className="w-full h-full object-cover" />
+    </div>
+  </div>
     </section>
   );
 };
